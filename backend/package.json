@@ -1,0 +1,13 @@
+{
+  "name": "quizsphere-backend",
+  "version": "1.0.0",
+  "description": "Backend API server for QuizSphere connecting to the database layer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["quiz", "backend", "api", "nodejs"],
+  "author": "QuizSphere Team",
+  "license": "MIT"
+}

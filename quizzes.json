@@ -1,0 +1,930 @@
+[
+  {
+    "id": "web-dev",
+    "title": "Modern Web & JavaScript",
+    "description": "Test your mastery of JavaScript, CSS layout models, DOM, and modern web architecture.",
+    "category": "Technology",
+    "icon": "🌐",
+    "timePerQuestion": 20,
+    "questions": [
+      {
+        "id": "wd-1",
+        "question": "Which HTTP status code signifies that a resource has been permanently moved to a new URI?",
+        "options": [
+          "301 Moved Permanently",
+          "302 Found",
+          "307 Temporary Redirect",
+          "404 Not Found"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "It is in the 3xx redirection family and specifically marks permanent moves for SEO.",
+        "explanation": "HTTP 301 indicates that the requested resource has been definitively assigned a new permanent URI."
+      },
+      {
+        "id": "wd-2",
+        "question": "What is the primary difference between 'let' and 'var' in modern JavaScript?",
+        "options": [
+          "'let' is block-scoped while 'var' is function-scoped",
+          "'var' cannot be reassigned while 'let' can",
+          "'let' is hoisted to the top of the script and initialized with null",
+          "There is no difference in ES6+"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "Think about code blocks wrapped in curly braces { } like if-statements and loops.",
+        "explanation": "'let' declarations are block-scoped (confined to the enclosing pair of braces) and enter the Temporal Dead Zone until initialized."
+      },
+      {
+        "id": "wd-3",
+        "question": "Which CSS property specifies whether an element creates a new stacking context for z-index layering?",
+        "options": [
+          "isolation: isolate",
+          "display: flow-root",
+          "box-sizing: border-box",
+          "visibility: collapse"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "It literally contains the word 'isolate' to separate stacking contexts cleanly.",
+        "explanation": "'isolation: isolate' creates a new stacking context without requiring position, opacity, or transform tricks."
+      },
+      {
+        "id": "wd-4",
+        "question": "What does the 'defer' attribute on a <script> tag guarantee?",
+        "options": [
+          "The script executes asynchronously as soon as it downloads",
+          "The script is downloaded in parallel and executed in document order after HTML parsing",
+          "The script blocks DOM parsing until completely loaded",
+          "The script only runs when the window triggers the 'unload' event"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "It defers execution until the HTML document is fully parsed, preserving script order.",
+        "explanation": "'defer' downloads the script in parallel without blocking HTML parsing, then executes in order right before DOMContentLoaded."
+      },
+      {
+        "id": "wd-5",
+        "question": "In JavaScript, what is the output of: typeof NaN ?",
+        "options": [
+          "'undefined'",
+          "'number'",
+          "'object'",
+          "'NaN'"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Even though it stands for 'Not-a-Number', numeric arithmetic produces it.",
+        "explanation": "In IEEE 754 floating-point arithmetic and JavaScript specification, NaN represents 'Not-a-Number', but its data type is 'number'."
+      },
+      {
+        "id": "wd-6",
+        "question": "Which web API is designed to measure Core Web Vitals such as LCP, FID/INP, and CLS?",
+        "options": [
+          "PerformanceObserver",
+          "MutationObserver",
+          "ResizeObserver",
+          "IntersectionObserver"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "It observes browser performance events and timeline entries.",
+        "explanation": "PerformanceObserver allows developers to listen for and record browser performance timeline entries, including Core Web Vitals."
+      },
+      {
+        "id": "wd-7",
+        "question": "What happens when a Promise is passed to Promise.all() where one of the promises rejects?",
+        "options": [
+          "It ignores the rejected promise and returns resolved ones",
+          "It immediately rejects with the reason of the first rejected promise",
+          "It waits for all promises to settle before reporting the error",
+          "It returns an array containing both successes and errors"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "Promise.all adheres to a 'fail-fast' mechanism.",
+        "explanation": "Promise.all 'fail-fast' behavior means it immediately rejects as soon as any promise in the iterable rejects. (Use Promise.allSettled for waiting on all)."
+      },
+      {
+        "id": "wd-8",
+        "question": "Which HTML element provides a semantic, accessible native modal dialog box with keyboard focus trapping?",
+        "options": [
+          "<modal>",
+          "<popup>",
+          "<dialog>",
+          "<window>"
+        ],
+        "correct": 2,
+        "difficulty": "Easy",
+        "hint": "It has methods like .showModal() and .close().",
+        "explanation": "The native HTML5 <dialog> element provides built-in focus trapping, Esc key dismissal, and backdrop rendering via dialog.showModal()."
+      },
+      {
+        "id": "wd-9",
+        "question": "What is the time complexity of looking up a key in a JavaScript Map or Set?",
+        "options": [
+          "O(log n)",
+          "O(1) average case",
+          "O(n)",
+          "O(n log n)"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "Maps and Sets use hash table backing stores for constant-time lookups.",
+        "explanation": "JavaScript Map and Set implementations use hash tables providing average O(1) time complexity for lookup, insertion, and deletion."
+      },
+      {
+        "id": "wd-10",
+        "question": "Which modern CSS pseudo-class acts as a parent or relational selector?",
+        "options": [
+          ":is()",
+          ":where()",
+          ":has()",
+          ":parent()"
+        ],
+        "correct": 2,
+        "difficulty": "Medium",
+        "hint": "It checks if the element 'has' certain child or sibling matches.",
+        "explanation": "The :has() relational pseudo-class allows styling an element based on its descendants or subsequent siblings."
+      },
+      {
+        "id": "wd-11",
+        "question": "In modern CSS, what does the :has() pseudo-class enable that was previously impossible without JavaScript?",
+        "options": [
+          "Selecting a parent element based on its descendants or following siblings",
+          "Creating 3D WebGL meshes directly in stylesheets",
+          "Detecting hardware GPU acceleration status",
+          "Running asynchronous HTTP requests"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "Often referred to as the \"parent selector\" in CSS.",
+        "explanation": "The :has() relational pseudo-class acts as a parent selector, matching elements if any relative selectors match from that element."
+      },
+      {
+        "id": "wd-12",
+        "question": "Which HTTP/2 and HTTP/3 feature eliminates Head-of-Line blocking at the application stream layer?",
+        "options": [
+          "Multiplexing independent streams over a single connection",
+          "Base64 cookie encryption",
+          "Automatic DOM diffing",
+          "Lossless video compression"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "Multiple requests and responses are interleaved simultaneously in frames.",
+        "explanation": "Multiplexing breaks requests and responses into independent binary frames transmitted over one connection without blocking other streams."
+      }
+    ]
+  },
+  {
+    "id": "science-nature",
+    "title": "Science & The Universe",
+    "description": "Explore mysteries of quantum mechanics, astrophysics, biology, and chemistry.",
+    "category": "Science",
+    "icon": "🔬",
+    "timePerQuestion": 25,
+    "questions": [
+      {
+        "id": "sn-1",
+        "question": "What is the powerhouse organelle of eukaryotic cells responsible for producing ATP?",
+        "options": [
+          "Ribosome",
+          "Endoplasmic Reticulum",
+          "Mitochondria",
+          "Golgi Apparatus"
+        ],
+        "correct": 2,
+        "difficulty": "Easy",
+        "hint": "Famous biology slogan: 'Mitochondria is the powerhouse of the cell.'",
+        "explanation": "Mitochondria generate most of the cell's supply of adenosine triphosphate (ATP), used as a source of chemical energy."
+      },
+      {
+        "id": "sn-2",
+        "question": "What particle is theorized to give mass to elementary particles through its quantum field?",
+        "options": [
+          "Higgs Boson",
+          "Graviton",
+          "Photon",
+          "Gluon"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Discovered at CERN's Large Hadron Collider in 2012; nicknamed 'The God Particle'.",
+        "explanation": "The Higgs boson is the excitation of the Higgs field, which gives mass to fundamental quarks and leptons via the Brout-Englert-Higgs mechanism."
+      },
+      {
+        "id": "sn-3",
+        "question": "What is the approximate speed of light in a vacuum?",
+        "options": [
+          "150,000 km/s",
+          "299,792 km/s",
+          "384,400 km/s",
+          "1,080,000 km/s"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Almost 300,000 kilometers per second.",
+        "explanation": "Light travels at exactly 299,792,458 meters per second (approx. 299,792 km/s) in a vacuum."
+      },
+      {
+        "id": "sn-4",
+        "question": "Which planet in our solar system has the highest surface temperature despite not being closest to the Sun?",
+        "options": [
+          "Mercury",
+          "Mars",
+          "Venus",
+          "Jupiter"
+        ],
+        "correct": 2,
+        "difficulty": "Medium",
+        "hint": "Named after the Roman goddess of love, it suffers from a runaway greenhouse effect.",
+        "explanation": "Venus has a runaway greenhouse effect caused by a dense atmosphere of 96.5% carbon dioxide, keeping surface temperatures around 465°C."
+      },
+      {
+        "id": "sn-5",
+        "question": "What type of chemical bond involves the sharing of electron pairs between atoms?",
+        "options": [
+          "Ionic bond",
+          "Covalent bond",
+          "Hydrogen bond",
+          "Metallic bond"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "The prefix 'co-' signifies cooperation or sharing.",
+        "explanation": "A covalent bond is formed when two atoms share one or more pairs of valence electrons to achieve stability."
+      },
+      {
+        "id": "sn-6",
+        "question": "What is the event horizon of a black hole?",
+        "options": [
+          "The singularity at the exact center",
+          "The boundary beyond which nothing, not even light, can escape",
+          "The accretion disk of glowing superheated gas",
+          "The gravitational wave wave-front"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "The point of no return for anything falling towards a black hole.",
+        "explanation": "The event horizon is the cosmic boundary where escape velocity equals and exceeds the speed of light."
+      },
+      {
+        "id": "sn-7",
+        "question": "What is the most abundant chemical element in the observable universe?",
+        "options": [
+          "Helium",
+          "Hydrogen",
+          "Oxygen",
+          "Carbon"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Element #1 on the Periodic table with atomic symbol H.",
+        "explanation": "Hydrogen accounts for approximately 75% of the elemental mass of the observable universe."
+      },
+      {
+        "id": "sn-8",
+        "question": "Which principle states that you cannot simultaneously know both the precise position and momentum of a particle?",
+        "options": [
+          "Pauli Exclusion Principle",
+          "Heisenberg Uncertainty Principle",
+          "Schrödinger Equation",
+          "Fermi-Dirac Distribution"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "Formulated by German physicist Werner Heisenberg.",
+        "explanation": "Werner Heisenberg formulated that Δx · Δp ≥ ℏ/2, meaning fundamental limits exist when measuring conjugate variables."
+      },
+      {
+        "id": "sn-9",
+        "question": "What is the theoretical boundary around a black hole beyond which nothing, not even light, can escape?",
+        "options": [
+          "Event Horizon",
+          "Accretion Disk",
+          "Ergosphere",
+          "Photon Sphere"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "The point of no return where escape velocity exceeds light speed.",
+        "explanation": "The event horizon is the outer boundary where the gravitational pull becomes so intense that nothing can overcome escape velocity."
+      },
+      {
+        "id": "sn-10",
+        "question": "What subatomic particle was experimentally verified at CERN's Large Hadron Collider in 2012, responsible for conferring mass to other particles?",
+        "options": [
+          "Higgs Boson",
+          "Top Quark",
+          "Tau Neutrino",
+          "Gluon"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "Often colloquially termed the \"God Particle\".",
+        "explanation": "The Higgs boson is the quantum excitation of the Higgs field, which gives fundamental mass to quarks and leptons via electroweak symmetry breaking."
+      }
+    ]
+  },
+  {
+    "id": "world-geography",
+    "title": "World Geography & Wonders",
+    "description": "Travel across continents, capitals, mountain ranges, and architectural wonders.",
+    "category": "Geography",
+    "icon": "🌍",
+    "timePerQuestion": 20,
+    "questions": [
+      {
+        "id": "wg-1",
+        "question": "Which is the largest desert in the world by total surface area?",
+        "options": [
+          "Sahara Desert",
+          "Arabian Desert",
+          "Antarctic Polar Desert",
+          "Gobi Desert"
+        ],
+        "correct": 2,
+        "difficulty": "Medium",
+        "hint": "Deserts are defined by low precipitation, not temperature; look to the southern pole.",
+        "explanation": "Antarctica is technically a desert due to very low precipitation, and with 14.2 million km² it is the largest desert on Earth (Sahara is the largest hot desert)."
+      },
+      {
+        "id": "wg-2",
+        "question": "What is the capital city of Australia?",
+        "options": [
+          "Sydney",
+          "Melbourne",
+          "Canberra",
+          "Brisbane"
+        ],
+        "correct": 2,
+        "difficulty": "Easy",
+        "hint": "It is neither Sydney nor Melbourne, but a planned city between the two.",
+        "explanation": "Canberra was chosen as the compromise capital of Australia in 1908 to settle rivalries between Sydney and Melbourne."
+      },
+      {
+        "id": "wg-3",
+        "question": "Which river flows through the highest number of countries in the world?",
+        "options": [
+          "Amazon River",
+          "Danube River",
+          "Nile River",
+          "Rhine River"
+        ],
+        "correct": 1,
+        "difficulty": "Hard",
+        "hint": "Flowing through central and southeastern Europe, touching 10 countries.",
+        "explanation": "The Danube flows through or borders 10 European nations: Germany, Austria, Slovakia, Hungary, Croatia, Serbia, Romania, Bulgaria, Moldova, and Ukraine."
+      },
+      {
+        "id": "wg-4",
+        "question": "Which country spans 11 time zones, the most of any continuous contiguous landmass?",
+        "options": [
+          "Canada",
+          "Russia",
+          "United States",
+          "China"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "The largest nation by total land area on Earth.",
+        "explanation": "Russia spans 11 consecutive time zones from Kaliningrad on the Baltic Sea to Kamchatka on the Pacific Ocean."
+      },
+      {
+        "id": "wg-5",
+        "question": "What is the deepest known location in Earth's oceans?",
+        "options": [
+          "Challenger Deep (Mariana Trench)",
+          "Puerto Rico Trench",
+          "Java Trench",
+          "Tonga Trench"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Located in the western Pacific Ocean within the Mariana Trench.",
+        "explanation": "Challenger Deep sits at the southern end of the Mariana Trench at an approximate depth of nearly 11,000 meters (36,000 feet)."
+      },
+      {
+        "id": "wg-6",
+        "question": "Which country is home to the historic ancient rock city of Petra?",
+        "options": [
+          "Egypt",
+          "Jordan",
+          "Lebanon",
+          "Morocco"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "A Middle Eastern kingdom bordered by Israel, Syria, Iraq, and Saudi Arabia.",
+        "explanation": "Petra, carved into vibrant red-rose sandstone cliffs, was the capital of the Nabataean Kingdom in southern Jordan."
+      },
+      {
+        "id": "wg-7",
+        "question": "What is the deepest known oceanic trench on planet Earth?",
+        "options": [
+          "Mariana Trench (Challenger Deep)",
+          "Puerto Rico Trench",
+          "Java Trench",
+          "Tonga Trench"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "Located in the western Pacific Ocean, reaching roughly 11,000 meters down.",
+        "explanation": "Challenger Deep in the Mariana Trench plunges nearly 11,000 meters (36,000 feet) below sea level."
+      },
+      {
+        "id": "wg-8",
+        "question": "Which African country is entirely enclaved (surrounded) by South Africa?",
+        "options": [
+          "Lesotho",
+          "Swaziland (Eswatini)",
+          "Botswana",
+          "Namibia"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "A kingdom perched high in the Maloti Mountains, completely enclosed within South Africa.",
+        "explanation": "The Kingdom of Lesotho is an independent enclave country completely surrounded by the territory of South Africa."
+      },
+      {
+        "id": "wg-9",
+        "question": "Which sea is situated at the lowest land-based elevation on Earth (-430 meters below sea level)?",
+        "options": [
+          "The Dead Sea",
+          "The Caspian Sea",
+          "The Aral Sea",
+          "The Red Sea"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Hypersaline lake bordered by Jordan and Israel, famous for extreme buoyancy.",
+        "explanation": "The surface and shores of the Dead Sea sit at 430+ meters below sea level, the lowest land elevation on Earth."
+      },
+      {
+        "id": "wg-10",
+        "question": "What is the only continent on Earth that contains no active volcanic activity on land?",
+        "options": [
+          "Australia",
+          "Antarctica",
+          "South America",
+          "Africa"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "The continent lies entirely within a stable tectonic plate away from boundaries.",
+        "explanation": "Mainland Australia contains no active volcanoes because it sits stably in the interior of the Indo-Australian tectonic plate."
+      }
+    ]
+  },
+  {
+    "id": "history-civilization",
+    "title": "History & Civilization",
+    "description": "Journey through ancient empires, pivotal revolutions, and historical milestones.",
+    "category": "History",
+    "icon": "🏛️",
+    "timePerQuestion": 25,
+    "questions": [
+      {
+        "id": "hc-1",
+        "question": "In what year did the Apollo 11 mission land the first humans on the Moon?",
+        "options": [
+          "1965",
+          "1969",
+          "1972",
+          "1967"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "It took place in the summer of the famous Woodstock festival year.",
+        "explanation": "Neil Armstrong and Buzz Aldrin stepped onto the lunar surface on July 20, 1969."
+      },
+      {
+        "id": "hc-2",
+        "question": "Who was the first Emperor of a unified China and commissioned the Terracotta Army?",
+        "options": [
+          "Kublai Khan",
+          "Qin Shi Huang",
+          "Sun Tzu",
+          "Emperor Wu of Han"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "His dynasty gave the modern name to 'China'.",
+        "explanation": "Qin Shi Huang unified the Warring States in 221 BC and founded the Qin dynasty, building the Terracotta Army to guard his mausoleum."
+      },
+      {
+        "id": "hc-3",
+        "question": "What ancient trade network connected East Asia with the Mediterranean for centuries?",
+        "options": [
+          "The Amber Road",
+          "The Silk Road",
+          "The Spice Route",
+          "The Royal Road"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Named after the prized lustrous fabric exported from China.",
+        "explanation": "The Silk Road was an expansive network of Eurasian trade routes active from the Han dynasty through the Middle Ages."
+      },
+      {
+        "id": "hc-4",
+        "question": "The Rosetta Stone was crucial for deciphering which ancient script?",
+        "options": [
+          "Cuneiform",
+          "Linear B",
+          "Egyptian Hieroglyphs",
+          "Sanskrit"
+        ],
+        "correct": 2,
+        "difficulty": "Easy",
+        "hint": "The pictorial script written on papyrus and inside Egyptian tombs.",
+        "explanation": "Discovered in 1799, the Rosetta Stone contained the same decree in hieroglyphs, Demotic, and Ancient Greek, unlocking Egyptian hieroglyphs."
+      },
+      {
+        "id": "hc-5",
+        "question": "Which invention by Johannes Gutenberg in the 1440s sparked an information revolution in Europe?",
+        "options": [
+          "The Steam Engine",
+          "Movable Type Printing Press",
+          "The Astrolabe",
+          "The Mechanical Clock"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Enabled mass production of books, notably the Gutenberg Bible.",
+        "explanation": "Gutenberg's movable type printing press enabled rapid, affordable dissemination of knowledge across the Western world."
+      },
+      {
+        "id": "hc-6",
+        "question": "Which Roman general crossed the Rubicon River in 49 BC, igniting a civil war and leading to the fall of the Republic?",
+        "options": [
+          "Julius Caesar",
+          "Mark Antony",
+          "Scipio Africanus",
+          "Pompey the Great"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "He uttered \"Alea iacta est\" (The die is cast).",
+        "explanation": "Julius Caesar's defiance in crossing the Rubicon into Italy precipitated the Roman civil war and his rise as dictator."
+      },
+      {
+        "id": "hc-7",
+        "question": "The Rosetta Stone was pivotal in deciphering which ancient writing system?",
+        "options": [
+          "Egyptian Hieroglyphics",
+          "Babylonian Cuneiform",
+          "Linear A",
+          "Minoan Script"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Contains decree inscriptions in hieroglyphic, Demotic, and ancient Greek.",
+        "explanation": "Discovered in 1799, the Rosetta Stone enabled Jean-François Champollion to unlock ancient Egyptian hieroglyphic text."
+      },
+      {
+        "id": "hc-8",
+        "question": "In what year was the Magna Carta signed by King John of England at Runnymede?",
+        "options": [
+          "1215",
+          "1066",
+          "1348",
+          "1492"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Early 13th century, establishing the principle that everyone—even the monarch—is subject to law.",
+        "explanation": "The Magna Carta was signed in June 1215, laying foundations for constitutional governance and individual rights."
+      },
+      {
+        "id": "hc-9",
+        "question": "Which ancient Mesopotamian code of laws is famous for the doctrine of \"an eye for an eye\"?",
+        "options": [
+          "Code of Hammurabi",
+          "Code of Justinian",
+          "Twelve Tables",
+          "Edict of Milan"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "Babylonian king who inscribed laws onto a giant black diorite stele.",
+        "explanation": "The Code of Hammurabi (c. 1754 BC) is one of the earliest preserved legal codes, renowned for lex talionis (retaliation)."
+      },
+      {
+        "id": "hc-10",
+        "question": "Who was the first emperor of a unified China, commissioned the Terracotta Army, and standardized coins and measurements?",
+        "options": [
+          "Qin Shi Huang",
+          "Han Wudi",
+          "Kublai Khan",
+          "Tang Taizong"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "Founder of the Qin Dynasty whose tomb is guarded by thousands of clay soldiers in Xi'an.",
+        "explanation": "Qin Shi Huang unified the warring states of China in 221 BC, initiating the imperial era and building the first Great Wall sections."
+      }
+    ]
+  },
+  {
+    "id": "computer-science",
+    "title": "Computer Science & Logic",
+    "description": "Data structures, algorithms, cryptography, and computing milestones.",
+    "category": "Technology",
+    "icon": "💻",
+    "timePerQuestion": 25,
+    "questions": [
+      {
+        "id": "cs-1",
+        "question": "Which data structure operates on a Last-In, First-Out (LIFO) order?",
+        "options": [
+          "Queue",
+          "Stack",
+          "Binary Search Tree",
+          "Linked List"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Think of a stack of plates in a cafeteria; you take the one from the top.",
+        "explanation": "A Stack pushes elements on top and pops them from the top, following the Last-In, First-Out (LIFO) principle."
+      },
+      {
+        "id": "cs-2",
+        "question": "What is the worst-case time complexity of standard QuickSort?",
+        "options": [
+          "O(n log n)",
+          "O(n)",
+          "O(n²)",
+          "O(2ⁿ)"
+        ],
+        "correct": 2,
+        "difficulty": "Medium",
+        "hint": "Quadratic time occurs when pivot selection repeatedly splits array into size 0 and n-1.",
+        "explanation": "When an unbalanced pivot is chosen repeatedly (such as on an already sorted array with poor pivot selection), QuickSort degrades to O(n²)."
+      },
+      {
+        "id": "cs-3",
+        "question": "Who is widely recognized as the world's first computer programmer for writing an algorithm for the Analytical Engine?",
+        "options": [
+          "Grace Hopper",
+          "Ada Lovelace",
+          "Alan Turing",
+          "Charles Babbage"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Daughter of Lord Byron, she collaborated with Charles Babbage.",
+        "explanation": "Ada Lovelace published the first algorithm intended to be processed by Charles Babbage's mechanical general-purpose computer."
+      },
+      {
+        "id": "cs-4",
+        "question": "In asymmetric (public-key) cryptography, which key is used to decrypt a message encrypted with a public key?",
+        "options": [
+          "The recipient's private key",
+          "The sender's public key",
+          "The shared symmetric key",
+          "The certificate authority key"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Only the recipient holds this secret counterpart key.",
+        "explanation": "Data encrypted with the recipient's public key can only be decrypted by the corresponding private key owned exclusively by the recipient."
+      },
+      {
+        "id": "cs-5",
+        "question": "Which algorithm is commonly used to find the shortest path in a weighted graph with non-negative edge weights?",
+        "options": [
+          "Floyd-Warshall",
+          "Dijkstra's Algorithm",
+          "Bellman-Ford",
+          "Kruskal's Algorithm"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "Dutch computer scientist Edsger W. Dijkstra formulated this greedy approach.",
+        "explanation": "Dijkstra's Algorithm greedily explores nearest vertices to compute the shortest path from a single source in non-negative weighted graphs."
+      },
+      {
+        "id": "cs-6",
+        "question": "What is the time complexity of searching for an element in a balanced Binary Search Tree (like an AVL or Red-Black tree)?",
+        "options": [
+          "O(log n)",
+          "O(1)",
+          "O(n)",
+          "O(n²)"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "Each comparison discards approximately half of the remaining subtrees.",
+        "explanation": "In a balanced binary search tree with n nodes, the maximum height is bounded by O(log n), providing logarithmic search time."
+      },
+      {
+        "id": "cs-7",
+        "question": "In relational databases, what does ACID stand for regarding transactions?",
+        "options": [
+          "Atomicity, Consistency, Isolation, Durability",
+          "Authentication, Caching, Indexing, Decoupling",
+          "Asynchronous, Concurrency, Integrity, Delivery",
+          "Automatic, Compatible, Incremental, Deterministic"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Key guarantees for database transactions to remain reliable even in system failures.",
+        "explanation": "ACID guarantees that database transactions are processed reliably: Atomicity, Consistency, Isolation, and Durability."
+      },
+      {
+        "id": "cs-8",
+        "question": "Which sorting algorithm is asymptotically optimal with O(n log n) worst-case time complexity while also being stable?",
+        "options": [
+          "Merge Sort",
+          "QuickSort",
+          "HeapSort",
+          "Selection Sort"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Divides the list in half recursively, sorts each, then blends them back together.",
+        "explanation": "Merge Sort guarantees O(n log n) in all cases (best, average, and worst) and preserves relative order of duplicate elements (stability)."
+      },
+      {
+        "id": "cs-9",
+        "question": "What consensus algorithm is famously used in Bitcoin to secure the distributed ledger without a central authority?",
+        "options": [
+          "Proof of Work (PoW / SHA-256)",
+          "Proof of Stake (PoS)",
+          "Raft Consensus",
+          "Paxos"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Miners expend computational energy solving cryptographic hashing puzzles.",
+        "explanation": "Bitcoin uses Nakamoto consensus based on Proof of Work (PoW) with SHA-256 hashing to secure transaction blocks."
+      },
+      {
+        "id": "cs-10",
+        "question": "Which famous theoretical computer science problem asks whether every problem whose solution can be verified quickly can also be solved quickly?",
+        "options": [
+          "P versus NP problem",
+          "Halting Problem",
+          "Traveling Salesperson Problem",
+          "Collatz Conjecture"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "One of the seven Millennium Prize Problems in mathematics with a $1,000,000 prize.",
+        "explanation": "P vs NP is a major unsolved question asking if polynomial-time verification (NP) implies polynomial-time solvability (P)."
+      }
+    ]
+  },
+  {
+    "id": "general-trivia",
+    "title": "Pop Culture & General Trivia",
+    "description": "Fun, mind-bending trivia spanning cinema, music, arts, and records.",
+    "category": "Trivia",
+    "icon": "⚡",
+    "timePerQuestion": 20,
+    "questions": [
+      {
+        "id": "gt-1",
+        "question": "Which film won the first Academy Award for Best Animated Feature in 2002?",
+        "options": [
+          "Monsters, Inc.",
+          "Shrek",
+          "Ice Age",
+          "Finding Nemo"
+        ],
+        "correct": 1,
+        "difficulty": "Easy",
+        "hint": "Features an ogre, a talking donkey, and a swamp.",
+        "explanation": "DreamWorks Animation's 'Shrek' won the inaugural Best Animated Feature Oscar at the 74th Academy Awards."
+      },
+      {
+        "id": "gt-2",
+        "question": "How many squares are there on a standard tournament chessboard?",
+        "options": [
+          "64",
+          "49",
+          "81",
+          "100"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "An 8 by 8 grid of alternating squares.",
+        "explanation": "A standard chessboard has an 8x8 grid of alternating dark and light squares, totaling 64 squares."
+      },
+      {
+        "id": "gt-3",
+        "question": "What was the first music video broadcast on MTV upon its launch in 1981?",
+        "options": [
+          "'Video Killed the Radio Star' by The Buggles",
+          "'Thriller' by Michael Jackson",
+          "'Take On Me' by A-ha",
+          "'Bohemian Rhapsody' by Queen"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "The title speaks literally about video killing radio.",
+        "explanation": "MTV debuted on August 1, 1981, playing 'Video Killed the Radio Star' as its symbolic first music video."
+      },
+      {
+        "id": "gt-4",
+        "question": "Which mythical creature is the national animal and symbol of Scotland?",
+        "options": [
+          "Dragon",
+          "Unicorn",
+          "Phoenix",
+          "Griffin"
+        ],
+        "correct": 1,
+        "difficulty": "Medium",
+        "hint": "A legendary horse-like creature with a single spiraling horn on its forehead.",
+        "explanation": "The unicorn has been an emblem of Scotland since the 12th century, prized for its chivalric power and purity."
+      },
+      {
+        "id": "gt-5",
+        "question": "Which artist painted \"The Starry Night\" while staying at the Saint-Paul-de-Mausole asylum in France?",
+        "options": [
+          "Vincent van Gogh",
+          "Claude Monet",
+          "Pablo Picasso",
+          "Salvador Dalí"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "Post-Impressionist Dutch master known for expressive swirling brushstrokes and sunflowers.",
+        "explanation": "Vincent van Gogh painted The Starry Night in June 1889 depicting the view from his asylum room window at Saint-Rémy-de-Provence."
+      },
+      {
+        "id": "gt-6",
+        "question": "What is the rarest blood type in the human ABO and Rh blood group systems?",
+        "options": [
+          "AB-negative (AB-)",
+          "O-positive (O+)",
+          "A-positive (A+)",
+          "B-negative (B-)"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Less than 1% of the global population has this specific Rh-negative combination.",
+        "explanation": "AB-negative is considered the rarest standard blood type, occurring in less than 1% of people worldwide."
+      },
+      {
+        "id": "gt-7",
+        "question": "Which world-renowned scientist refused the presidency of Israel in 1952?",
+        "options": [
+          "Albert Einstein",
+          "Niels Bohr",
+          "J. Robert Oppenheimer",
+          "Marie Curie"
+        ],
+        "correct": 0,
+        "difficulty": "Medium",
+        "hint": "Theoretical physicist who formulated the theory of General Relativity.",
+        "explanation": "Albert Einstein was offered the presidency of Israel after the death of Chaim Weizmann in 1952, but politely declined."
+      },
+      {
+        "id": "gt-8",
+        "question": "In literature, what is the fictional surname of the three detective brothers Sherlock, Mycroft, and Eurus?",
+        "options": [
+          "Holmes",
+          "Watson",
+          "Poirot",
+          "Moriarty"
+        ],
+        "correct": 0,
+        "difficulty": "Easy",
+        "hint": "Created by Sir Arthur Conan Doyle, residing at 221B Baker Street.",
+        "explanation": "Sherlock Holmes and his elder brother Mycroft Holmes are the famous creations of Arthur Conan Doyle."
+      },
+      {
+        "id": "gt-9",
+        "question": "What is the oldest known musical instrument discovered by archaeologists?",
+        "options": [
+          "Divje Babe Bone Flute (40,000+ years old)",
+          "Bronze Bell",
+          "Wooden Lyre",
+          "Clay Drum"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "Carved from cave bear femur with spaced finger holes discovered in Slovenia.",
+        "explanation": "Paleolithic bone flutes, such as the Divje Babe flute (43,000+ years old) and Hohle Fels flute, are the earliest confirmed musical instruments."
+      },
+      {
+        "id": "gt-10",
+        "question": "Which chemical element has the highest melting point of all known metals (3,422 °C)?",
+        "options": [
+          "Tungsten (Wolfram)",
+          "Titanium",
+          "Platinum",
+          "Osmium"
+        ],
+        "correct": 0,
+        "difficulty": "Hard",
+        "hint": "Symbol W, historically used as incandescence lamp filament.",
+        "explanation": "Tungsten (W, atomic number 74) has the highest melting point among all metals at 3,422 °C (6,192 °F)."
+      }
+    ]
+  }
+]

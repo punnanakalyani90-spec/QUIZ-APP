@@ -1,0 +1,21 @@
+{
+  "name": "quizsphere-app",
+  "version": "2.0.0",
+  "description": "Interactive online quiz platform cleanly architected into frontend, backend, and database tiers.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js"
+  },
+  "keywords": [
+    "quiz",
+    "education",
+    "trivia",
+    "frontend",
+    "backend",
+    "database",
+    "javascript"
+  ],
+  "author": "QuizSphere Team",
+  "license": "MIT"
+}

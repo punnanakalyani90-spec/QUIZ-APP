@@ -1,0 +1,61 @@
+[
+  {
+    "id": "sc-1791446752900-518e79",
+    "quizId": "daily-2026-10-08",
+    "quizTitle": "Daily Challenge",
+    "userName": "SpeedDemon",
+    "userAvatar": "?",
+    "score": 5,
+    "total": 5,
+    "percentage": 100,
+    "earnedPoints": 950,
+    "maxStreak": 5,
+    "difficulty": "Medium",
+    "timeTakenSeconds": 18,
+    "date": "2026-10-08T08:05:52.901Z"
+  },
+  {
+    "id": "score-1",
+    "quizId": "web-dev",
+    "quizTitle": "Modern Web & JavaScript",
+    "userName": "Alex Dev",
+    "score": 10,
+    "total": 10,
+    "percentage": 100,
+    "timeTakenSeconds": 78,
+    "date": "2026-09-28T14:20:00.000Z"
+  },
+  {
+    "id": "score-2",
+    "quizId": "science-nature",
+    "quizTitle": "Science & The Universe",
+    "userName": "Dr. Nova",
+    "score": 7,
+    "total": 8,
+    "percentage": 88,
+    "timeTakenSeconds": 85,
+    "date": "2026-09-29T10:15:00.000Z"
+  },
+  {
+    "id": "score-3",
+    "quizId": "world-geography",
+    "quizTitle": "World Geography & Wonders",
+    "userName": "Atlas_Explorer",
+    "score": 6,
+    "total": 6,
+    "percentage": 100,
+    "timeTakenSeconds": 45,
+    "date": "2026-09-29T16:45:00.000Z"
+  },
+  {
+    "id": "score-4",
+    "quizId": "computer-science",
+    "quizTitle": "Computer Science & Logic",
+    "userName": "CodeNinja",
+    "score": 4,
+    "total": 5,
+    "percentage": 80,
+    "timeTakenSeconds": 52,
+    "date": "2026-09-30T09:30:00.000Z"
+  }
+]

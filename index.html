@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizSphere Pro — Ultimate Interactive Quiz Experience</title>
+  <meta name="description" content="Engaging online quiz web application with lifelines, power-ups inventory, daily challenges, streak combo multipliers, leaderboards, and custom quiz builder.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="dark">
+  <div id="confetti-container" aria-hidden="true"></div>
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- App Header / Nav -->
+  <header class="app-header">
+    <div class="header-inner container">
+      <div class="brand" id="brand-logo" role="button" tabindex="0" title="Return to Home">
+        <div class="brand-icon-wrapper">
+          <span class="brand-icon">⚡</span>
+          <span class="brand-pulse"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Quiz<span class="gradient-text">Sphere Pro</span></span>
+          <span class="brand-subtitle">Mastery, Trivia & Quests</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <button class="nav-btn active" data-view="home" id="nav-home">
+          <span class="icon">🧭</span> Explore
+        </button>
+        <button class="nav-btn" data-view="leaderboard" id="nav-leaderboard">
+          <span class="icon">🏆</span> Leaderboard
+        </button>
+        <button class="nav-btn" id="nav-achievements" title="View Badges & Achievements">
+          <span class="icon">🎖️</span> Badges
+        </button>
+        <button class="nav-btn" id="nav-inventory" title="Power-Ups Shop & Inventory">
+          <span class="icon">🎒</span> Shop & Inventory
+        </button>
+        <button class="btn btn-primary btn-sm" id="btn-open-creator">
+          <span class="icon">➕</span> Create Quiz
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Coins Chip -->
+        <div class="coins-chip" id="player-coins-chip" title="Quiz Coins — Click to visit Power-Ups Shop" tabindex="0" role="button">
+          <span class="coin-icon">🪙</span>
+          <span class="coin-count font-mono" id="display-player-coins">250</span>
+        </div>
+
+        <!-- XP & Level Badge -->
+        <div class="xp-level-badge" id="player-xp-container" title="Click to view Player Profile & Stats" tabindex="0" role="button">
+          <span class="level-tag font-mono" id="display-player-level">LVL 1</span>
+          <div class="mini-xp-track">
+            <div class="mini-xp-bar" id="display-xp-fill" style="width: 20%;"></div>
+          </div>
+          <span class="xp-text font-mono" id="display-xp-text">0 XP</span>
+        </div>
+
+        <!-- Sound toggle -->
+        <button class="icon-toggle" id="btn-sound-toggle" title="Toggle Sound Effects (S)" aria-label="Toggle Sound Effects">
+          <span class="sound-icon" id="sound-indicator">🔊</span>
+        </button>
+
+        <!-- Theme toggle -->
+        <button class="icon-toggle" id="btn-theme-toggle" title="Toggle Dark/Light Mode (T)" aria-label="Toggle Theme">
+          <span class="theme-icon" id="theme-indicator">🌙</span>
+        </button>
+
+        <!-- Player Nickname Chip -->
+        <div class="player-chip" id="player-profile-chip" title="Click to edit player profile" tabindex="0" role="button">
+          <span class="avatar-circle" id="player-avatar">👤</span>
+          <span class="player-name" id="display-player-name">Player</span>
+          <span class="edit-badge">✏️</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-content container" id="main-content">
+    
+    <!-- 1. HOME / EXPLORE VIEW -->
+    <section id="view-home" class="view-section active">
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-badge">✨ Level Up Your Trivia Superpowers</div>
+          <h1 class="hero-title">Challenge Yourself with <span class="gradient-text">Timed Quizzes</span> & Power-Ups</h1>
+          <p class="hero-desc">Explore hand-crafted questions across Technology, Science, Geography, History, and Trivia. Use 8 strategic lifelines, rack up combo multipliers, conquer the Daily Challenge, and climb the global leaderboard!</p>
+          
+          <div class="hero-cta-buttons">
+            <button class="btn btn-primary btn-lg" id="btn-hero-daily-challenge">
+              <span>🌟</span> Play Today's Daily Challenge
+            </button>
+            <button class="btn btn-secondary btn-lg" id="btn-hero-random-quiz">
+              <span>🎲</span> Quick Random Quiz
+            </button>
+          </div>
+
+          <div class="hero-quick-stats" id="platform-stats">
+            <div class="stat-pill">
+              <span class="stat-num" id="stat-total-quizzes">6</span>
+              <span class="stat-label">Quizzes</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num" id="stat-total-questions">60+</span>
+              <span class="stat-label">Questions</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num" id="stat-games-played">180+</span>
+              <span class="stat-label">Attempts</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num" id="stat-avg-score">85%</span>
+              <span class="stat-label">Avg Accuracy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card-preview" aria-hidden="true">
+          <div class="floating-badge badge-1">🔥 2.5x Combo Multiplier</div>
+          <div class="floating-badge badge-2">🪄 8 Strategic Lifelines</div>
+          <div class="floating-badge badge-3">🌟 Daily Challenges</div>
+          <div class="hero-illustration">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="code-art">🏆</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAILY CHALLENGE PINNED BANNER -->
+      <div class="daily-challenge-banner" id="daily-challenge-banner">
+        <div class="daily-banner-left">
+          <div class="daily-star-icon">🌟</div>
+          <div>
+            <div class="daily-badge-row">
+              <span class="badge-gold">Daily Quest</span>
+              <span class="daily-date-label" id="daily-banner-date">October 8, 2026</span>
+              <span class="daily-streak-chip font-mono" id="daily-streak-display">🔥 0-Day Streak</span>
+            </div>
+            <h3 class="daily-title" id="daily-banner-title">Today's Daily Challenge</h3>
+            <p class="daily-desc">5 multi-disciplinary questions curated daily. Complete it to earn <strong>+100 Bonus Coins</strong>, <strong>+150 XP</strong>, and advance your daily challenge streak!</p>
+          </div>
+        </div>
+        <div class="daily-banner-right">
+          <div class="daily-status-indicator" id="daily-status-indicator">
+            <span class="pulse-dot"></span> Ready to Play
+          </div>
+          <button class="btn btn-primary" id="btn-start-daily-challenge">
+            <span>🚀</span> Launch Daily Challenge
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Controls & Search -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="quiz-search-input" placeholder="Search quizzes by title or topic..." aria-label="Search quizzes">
+          <button class="clear-search-btn" id="btn-clear-search" hidden aria-label="Clear search">✕</button>
+        </div>
+
+        <div class="category-filters" id="category-pills" role="tablist" aria-label="Categories">
+          <button class="filter-pill active" data-category="All" role="tab" aria-selected="true">All</button>
+          <button class="filter-pill" data-category="Technology" role="tab" aria-selected="false">Technology</button>
+          <button class="filter-pill" data-category="Science" role="tab" aria-selected="false">Science</button>
+          <button class="filter-pill" data-category="Geography" role="tab" aria-selected="false">Geography</button>
+          <button class="filter-pill" data-category="History" role="tab" aria-selected="false">History</button>
+          <button class="filter-pill" data-category="Trivia" role="tab" aria-selected="false">Trivia</button>
+          <button class="filter-pill" data-category="Custom" role="tab" aria-selected="false">Custom ✨</button>
+        </div>
+
+        <!-- Difficulty Tier Filter -->
+        <div class="difficulty-filter-wrap">
+          <label for="select-difficulty-filter" class="filter-label">Difficulty:</label>
+          <select id="select-difficulty-filter" class="form-select filter-select">
+            <option value="All">All Tiers (Adaptive)</option>
+            <option value="Easy">Easy Tier (75 pts • +10 🪙)</option>
+            <option value="Medium">Medium Tier (125 pts • +20 🪙)</option>
+            <option value="Hard">Hard Tier (200 pts • +35 🪙)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Quizzes Grid -->
+      <div class="quiz-grid" id="quizzes-container">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Loading quizzes...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ACTIVE QUIZ PLAY VIEW -->
+    <section id="view-quiz-play" class="view-section" hidden>
+      <div class="quiz-play-wrapper">
+        <!-- Top Status Bar -->
+        <div class="quiz-top-bar">
+          <button class="btn btn-ghost btn-sm" id="btn-exit-quiz" title="Exit to Quizzes">
+            <span>←</span> Exit
+          </button>
+
+          <div class="quiz-meta-info">
+            <span class="quiz-active-icon" id="play-quiz-icon">🌐</span>
+            <span class="quiz-active-title" id="play-quiz-title">Web Development</span>
+            <span class="mode-tag-pill" id="play-mode-pill">🎯 Standard</span>
+          </div>
+
+          <div class="quiz-aux-tools">
+            <button class="btn btn-secondary btn-sm tool-btn" id="btn-tts-read" title="Read Question Aloud (Speech)">
+              <span class="icon">🗣️</span> Read Aloud
+            </button>
+            <button class="btn btn-ghost btn-sm tool-btn" id="btn-quick-open-shop" title="Open Power-ups Shop">
+              <span>🎒</span> Shop
+            </button>
+          </div>
+        </div>
+
+        <!-- 8 LIFELINES POWER-UPS TRAY -->
+        <div class="powerups-tray-container" aria-label="Power-ups Inventory Bar">
+          <div class="powerups-tray-header">
+            <span class="powerups-tray-title">⚡ POWER-UPS INVENTORY</span>
+            <span class="powerups-tray-hint">Click a power-up to activate on this question (earned via gameplay)</span>
+          </div>
+          <div class="powerups-tray" id="powerups-tray">
+            <!-- 1. 50:50 Lifeline -->
+            <button class="powerup-btn" id="btn-lifeline-5050" title="50-50 Lifeline: Removes 2 incorrect options">
+              <span class="powerup-icon">🪄</span>
+              <span class="powerup-name">50:50</span>
+              <span class="powerup-badge font-mono" id="lifeline-5050-count">2</span>
+            </button>
+
+            <!-- 2. Skip Question -->
+            <button class="powerup-btn" id="btn-lifeline-skip" title="Skip Question: Skip one question without losing points or streak">
+              <span class="powerup-icon">⏭️</span>
+              <span class="powerup-name">Skip Q</span>
+              <span class="powerup-badge font-mono" id="lifeline-skip-count">2</span>
+            </button>
+
+            <!-- 3. Clue / Hint -->
+            <button class="powerup-btn" id="btn-lifeline-hint" title="Hint: Reveal a clue at a small cost of 20 pts">
+              <span class="powerup-icon">💡</span>
+              <span class="powerup-name">Hint</span>
+              <span class="powerup-badge font-mono" id="lifeline-hint-count">3</span>
+            </button>
+
+            <!-- 4. Time Freeze -->
+            <button class="powerup-btn" id="btn-lifeline-freeze" title="Time Freeze: Pauses the timer for 7 seconds">
+              <span class="powerup-icon">❄️</span>
+              <span class="powerup-name">Freeze</span>
+              <span class="powerup-badge font-mono" id="lifeline-freeze-count">2</span>
+            </button>
+
+            <!-- 5. Double Points -->
+            <button class="powerup-btn" id="btn-lifeline-double" title="Double Points: Risk current question for 2× points!">
+              <span class="powerup-icon">2️⃣</span>
+              <span class="powerup-name">2× Double</span>
+              <span class="powerup-badge font-mono" id="lifeline-double-count">2</span>
+            </button>
+
+            <!-- 6. Extra Time -->
+            <button class="powerup-btn" id="btn-lifeline-extratime" title="Extra Time: Adds 15 bonus seconds to current question">
+              <span class="powerup-icon">⏳</span>
+              <span class="powerup-name">+15s Extra</span>
+              <span class="powerup-badge font-mono" id="lifeline-extratime-count">2</span>
+            </button>
+
+            <!-- 7. Audience Poll -->
+            <button class="powerup-btn" id="btn-lifeline-poll" title="Audience Poll: Display simulated live audience percentages">
+              <span class="powerup-icon">📊</span>
+              <span class="powerup-name">Audience</span>
+              <span class="powerup-badge font-mono" id="lifeline-poll-count">2</span>
+            </button>
+
+            <!-- 8. Ask a Friend -->
+            <button class="powerup-btn" id="btn-lifeline-friend" title="Ask a Friend: Call a virtual trivia friend for advice & confidence rating">
+              <span class="powerup-icon">📞</span>
+              <span class="powerup-name">Ask Friend</span>
+              <span class="powerup-badge font-mono" id="lifeline-friend-count">2</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metrics Dashboard -->
+        <div class="quiz-metrics-container">
+          <div class="metric-block">
+            <span class="metric-label">Question</span>
+            <span class="metric-value font-mono"><span id="play-current-q">1</span> / <span id="play-total-q">10</span></span>
+          </div>
+
+          <!-- Timer Metric -->
+          <div class="metric-block timer-metric" id="timer-box">
+            <div class="timer-pie-wrap" id="timer-pie-wrap">
+              <svg class="timer-svg" viewBox="0 0 36 36">
+                <path class="timer-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="timer-stroke" id="timer-circle-path" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              </svg>
+              <span class="timer-text font-mono" id="play-timer">20</span>
+              <div class="frozen-overlay-badge" id="frozen-overlay-badge" hidden>❄️ FROZEN</div>
+            </div>
+            <span class="timer-label" id="timer-unit-label">seconds</span>
+          </div>
+
+          <div class="metric-block">
+            <span class="metric-label">Streak & Multiplier</span>
+            <span class="metric-value streak-value" id="play-streak-display">🔥 0 (1.0x)</span>
+          </div>
+
+          <div class="metric-block">
+            <span class="metric-label">Points & Score</span>
+            <span class="metric-value font-mono highlight-score" id="play-score-display">0 pts</span>
+          </div>
+
+          <div class="metric-block">
+            <span class="metric-label">Session Coins</span>
+            <span class="metric-value font-mono highlight-coins" id="play-coins-session">🪙 +0</span>
+          </div>
+        </div>
+
+        <div class="linear-progress-bar">
+          <div class="progress-fill" id="play-progress-fill" style="width: 10%;"></div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="question-card" id="question-card">
+          <!-- Active Modifiers Banners -->
+          <div class="modifier-banner double-points-active" id="double-points-banner" hidden>
+            <span class="mod-icon">🔥</span>
+            <span><strong>2× DOUBLE OR NOTHING RISK ACTIVE!</strong> Correct = 2× Points & XP. Wrong = -50 pts & Streak Reset!</span>
+          </div>
+
+          <div class="modifier-banner freeze-time-active" id="freeze-active-banner" hidden>
+            <span class="mod-icon">❄️</span>
+            <span><strong>TIME FROZEN!</strong> Timer is paused for 7 seconds. Take your time!</span>
+          </div>
+
+          <div class="question-header">
+            <div class="tags-left">
+              <span class="difficulty-tag" id="play-difficulty-tag">Medium</span>
+              <span class="points-badge font-mono" id="play-points-badge">+125 pts</span>
+              <span class="coins-badge font-mono" id="play-coins-badge">+20 🪙</span>
+            </div>
+            <span class="keyboard-tip">Keys <kbd>1</kbd>–<kbd>4</kbd> / <kbd>Enter</kbd></span>
+          </div>
+
+          <h2 class="question-text" id="play-question-text">
+            Loading question...
+          </h2>
+
+          <!-- Hint Banner -->
+          <div class="hint-banner" id="hint-banner" hidden>
+            <div class="hint-banner-title">💡 Clue / Hint (Cost: -20 pts):</div>
+            <div class="hint-banner-text" id="hint-banner-text"></div>
+          </div>
+
+          <!-- Options Grid -->
+          <div class="options-grid" id="options-container">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Explanation Box -->
+          <div class="explanation-box" id="explanation-box" hidden>
+            <div class="explanation-header">
+              <span class="explanation-icon" id="explanation-icon">💡</span>
+              <strong id="explanation-title">Explanation</strong>
+            </div>
+            <p class="explanation-text" id="explanation-text"></p>
+          </div>
+
+          <!-- Bottom Action Bar -->
+          <div class="question-actions" id="question-actions">
+            <div class="action-status" id="action-status-msg">Select an answer above</div>
+            <button class="btn btn-primary btn-lg" id="btn-next-question" disabled>
+              Next Question <span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. RESULTS / SCORE SUMMARY VIEW -->
+    <section id="view-results" class="view-section" hidden>
+      <div class="results-wrapper">
+        <div class="results-card">
+          <div class="results-header-graphic">
+            <div class="trophy-emitter" id="results-icon">🏆</div>
+            <h2 class="results-title" id="results-title">Quiz Completed!</h2>
+            <p class="results-subtitle" id="results-subtitle">Here is your comprehensive performance report</p>
+          </div>
+
+          <div class="results-score-circle">
+            <div class="score-circle-inner">
+              <span class="circle-percent font-mono" id="results-percentage">100%</span>
+              <span class="circle-label" id="results-grade">Outstanding!</span>
+            </div>
+          </div>
+
+          <!-- Key Metrics Grid -->
+          <div class="results-stats-grid">
+            <div class="result-stat-box">
+              <span class="stat-icon">🎯</span>
+              <span class="stat-big-val font-mono" id="results-score-fraction">10 / 10</span>
+              <span class="stat-name">Correct Answers</span>
+            </div>
+            <div class="result-stat-box">
+              <span class="stat-icon">⏱️</span>
+              <span class="stat-big-val font-mono" id="results-time-taken">54s</span>
+              <span class="stat-name">Total Time</span>
+            </div>
+            <div class="result-stat-box">
+              <span class="stat-icon">🔥</span>
+              <span class="stat-big-val font-mono" id="results-max-streak">10</span>
+              <span class="stat-name">Highest Streak</span>
+            </div>
+            <div class="result-stat-box">
+              <span class="stat-icon">🪙</span>
+              <span class="stat-big-val font-mono" id="results-coins-earned">+180</span>
+              <span class="stat-name">Coins Earned</span>
+            </div>
+            <div class="result-stat-box">
+              <span class="stat-icon">⭐</span>
+              <span class="stat-big-val font-mono" id="results-xp-earned">+450 XP</span>
+              <span class="stat-name">XP Gained</span>
+            </div>
+            <div class="result-stat-box">
+              <span class="stat-icon">⚡</span>
+              <span class="stat-big-val font-mono" id="results-avg-speed">5.4s</span>
+              <span class="stat-name">Avg Time / Q</span>
+            </div>
+          </div>
+
+          <!-- Badges Earned Container -->
+          <div class="results-badges-section">
+            <h3 class="section-micro-title">Achievements Unlocked in this Session</h3>
+            <div class="badges-row" id="results-badges-row">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Certificate Claim Action (If >= 70%) -->
+          <div class="certificate-offer-box" id="certificate-offer-box" hidden>
+            <div class="cert-offer-icon">📜</div>
+            <div class="cert-offer-text">
+              <h4>Certificate of Achievement Qualified!</h4>
+              <p>You scored 70%+ on this assessment. Generate your official customized certificate!</p>
+            </div>
+            <button class="btn btn-primary" id="btn-open-certificate">
+              <span>🎓</span> View & Download Certificate
+            </button>
+          </div>
+
+          <!-- Buttons -->
+          <div class="results-actions">
+            <button class="btn btn-secondary" id="btn-toggle-review">
+              <span>📖</span> Review Answers
+            </button>
+            <button class="btn btn-primary" id="btn-retry-quiz">
+              <span>🔄</span> Play Again
+            </button>
+            <button class="btn btn-ghost" id="btn-home-from-results">
+              <span>🏠</span> Back to Quizzes
+            </button>
+          </div>
+        </div>
+
+        <!-- Review Answers Panel -->
+        <div class="review-panel" id="review-panel" hidden>
+          <div class="review-panel-header">
+            <h3>Detailed Question Review</h3>
+            <span class="review-summary-tag" id="review-summary-tag">10 Questions</span>
+          </div>
+          <div class="review-list" id="review-list-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LEADERBOARD VIEW -->
+    <section id="view-leaderboard" class="view-section" hidden>
+      <div class="leaderboard-wrapper">
+        <div class="leaderboard-header">
+          <div class="title-with-badge">
+            <span class="badge-trophy">🏆</span>
+            <div>
+              <h2>Global Hall of Fame</h2>
+              <p>Top performers ranked by score, accuracy, difficulty, and completion speed</p>
+            </div>
+          </div>
+
+          <div class="leaderboard-filters">
+            <select id="leaderboard-quiz-filter" class="form-select" aria-label="Filter Leaderboard by Quiz">
+              <option value="all">All Quizzes</option>
+            </select>
+            <button class="btn btn-secondary btn-sm" id="btn-refresh-leaderboard" title="Refresh">
+              🔄 Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="leaderboard-table-card">
+          <div class="table-responsive">
+            <table class="leaderboard-table">
+              <thead>
+                <tr>
+                  <th class="col-rank">Rank</th>
+                  <th class="col-player">Player</th>
+                  <th class="col-quiz">Quiz Title</th>
+                  <th class="col-score">Score</th>
+                  <th class="col-pct">Accuracy</th>
+                  <th class="col-time">Time</th>
+                  <th class="col-date">Date</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-tbody">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+          <div id="leaderboard-empty" class="empty-state" hidden>
+            <div class="empty-icon">🎖️</div>
+            <p>No recorded scores yet. Complete a quiz to climb the leaderboard!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: AUDIENCE POLL LIFELINE -->
+  <dialog class="app-dialog modal-small" id="dialog-audience-poll" aria-labelledby="dialog-poll-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-icon">📊</span>
+          <h3 id="dialog-poll-title">Audience Poll Results</h3>
+        </div>
+        <button class="dialog-close-btn" id="btn-close-poll-dialog" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="poll-modal-body">
+        <p class="poll-subtitle">Simulated live audience of 500 respondents voted as follows:</p>
+        <div class="poll-bars-container" id="poll-bars-container">
+          <!-- Rendered dynamically -->
+        </div>
+        <div class="poll-modal-footer">
+          <button type="button" class="btn btn-primary btn-block" id="btn-dismiss-poll">Got It, Thanks!</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: ASK A FRIEND LIFELINE -->
+  <dialog class="app-dialog modal-small" id="dialog-ask-friend" aria-labelledby="dialog-friend-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-icon">📞</span>
+          <h3 id="dialog-friend-title">Phone a Friend</h3>
+        </div>
+        <button class="dialog-close-btn" id="btn-close-friend-dialog" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="friend-modal-body" id="friend-modal-body">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-primary btn-block" id="btn-dismiss-friend">Return to Question</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: POWER-UPS SHOP & INVENTORY -->
+  <dialog class="app-dialog modal-wide" id="dialog-inventory-shop" aria-labelledby="dialog-shop-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-icon">🎒</span>
+          <h2 id="dialog-shop-title">Power-Ups Shop & Inventory</h2>
+        </div>
+        <button class="dialog-close-btn" id="btn-close-shop-dialog" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="shop-body">
+        <!-- Player Wallet Header -->
+        <div class="shop-wallet-banner">
+          <div class="wallet-left">
+            <span class="wallet-icon">🪙</span>
+            <div>
+              <span class="wallet-label">YOUR COIN BALANCE</span>
+              <h3 class="wallet-coins font-mono" id="shop-wallet-coins">250 Coins</h3>
+            </div>
+          </div>
+          <div class="wallet-right">
+            <p>Earn coins by answering correctly (+10–25 🪙), finishing quizzes (+30 🪙), daily challenges (+100 🪙), and streaks!</p>
+          </div>
+        </div>
+
+        <div class="shop-grid" id="shop-items-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-primary" id="btn-done-shop">Done</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: ACHIEVEMENTS & BADGES -->
+  <dialog class="app-dialog modal-wide" id="dialog-achievements" aria-labelledby="dialog-achieve-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-icon">🎖️</span>
+          <h2 id="dialog-achieve-title">Badges & Achievements</h2>
+        </div>
+        <button class="dialog-close-btn" id="btn-close-achieve-dialog" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="achieve-body">
+        <div class="achieve-summary-box">
+          <span class="font-mono" id="achieve-unlocked-count">3 / 10 Unlocked</span>
+          <p>Complete challenges to unlock prestigious badges and earn bonus Quiz Coins!</p>
+        </div>
+
+        <div class="achieve-grid" id="achieve-cards-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-primary" id="btn-done-achieve">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: GAME MODE SELECTOR & LAUNCHER -->
+  <dialog class="app-dialog" id="dialog-game-mode" aria-labelledby="dialog-mode-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-icon">⚡</span>
+          <h2 id="dialog-mode-title">Select Game Mode</h2>
+        </div>
+        <button class="dialog-close-btn" id="btn-close-mode-dialog" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="modes-selection-body">
+        <p class="modes-intro">Choose how you want to challenge yourself with <strong id="modal-selected-quiz-title">Quiz</strong>:</p>
+        
+        <div class="modes-grid">
+          <!-- Mode 1: Standard -->
+          <div class="mode-card selected" data-mode="standard" role="button" tabindex="0">
+            <div class="mode-icon-wrap">🎯</div>
+            <div class="mode-details">
+              <h4>Standard Mode</h4>
+              <p>Balanced gameplay with countdown timer, 8 power-ups, streak multipliers, and instant explanations.</p>
+              <div class="mode-badge-meta">Normal Timer • All Power-ups • Verified Certificate</div>
+            </div>
+          </div>
+
+          <!-- Mode 2: Speed Rush -->
+          <div class="mode-card" data-mode="speed" role="button" tabindex="0">
+            <div class="mode-icon-wrap">⚡</div>
+            <div class="mode-details">
+              <h4>Speed Rush Blitz</h4>
+              <p>Rapid-fire 10-second timer per question! Fast answers earn 2x bonus combo XP & Coins.</p>
+              <div class="mode-badge-meta">10s Blitz Timer • Double XP • Quick Reflexes</div>
+            </div>
+          </div>
+
+          <!-- Mode 3: Sudden Death Survival -->
+          <div class="mode-card" data-mode="survival" role="button" tabindex="0">
+            <div class="mode-icon-wrap">💀</div>
+            <div class="mode-details">
+              <h4>Sudden Death Survival</h4>
+              <p>One single mistake and it's Game Over! Test your flawless mastery and ultimate accuracy.</p>
+              <div class="mode-badge-meta">1 Life Only • High Stakes • Legendary Glory</div>
+            </div>
+          </div>
+
+          <!-- Mode 4: Zen Practice -->
+          <div class="mode-card" data-mode="zen" role="button" tabindex="0">
+            <div class="mode-icon-wrap">🧘</div>
+            <div class="mode-details">
+              <h4>Zen Study Mode</h4>
+              <p>No timer stress. Take all the time you need to study questions, hints, and in-depth explanations.</p>
+              <div class="mode-badge-meta">Untimed • Unlimited Study • Clues Included</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Launch Modifiers -->
+        <div class="launch-modifiers-row">
+          <label class="custom-checkbox-label">
+            <input type="checkbox" id="chk-shuffle-questions" checked>
+            <span>🔀 <strong>Randomize Question & Option Order</strong> (Maximum replayability)</span>
+          </label>
+        </div>
+
+        <div class="dialog-footer">
+          <button type="button" class="btn btn-ghost" id="btn-cancel-mode">Cancel</button>
+          <button type="button" class="btn btn-primary btn-lg" id="btn-confirm-start-mode">
+            🚀 Launch Quiz Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: CERTIFICATE OF ACHIEVEMENT -->
+  <dialog class="app-dialog modal-wide" id="dialog-certificate" aria-labelledby="dialog-cert-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-icon">📜</span>
+          <h2 id="dialog-cert-title">Certificate of Achievement</h2>
+        </div>
+        <button class="dialog-close-btn" id="btn-close-cert-dialog" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="cert-body">
+        <div class="cert-canvas-wrapper">
+          <canvas id="cert-canvas" width="800" height="560"></canvas>
+        </div>
+
+        <div class="dialog-footer cert-footer">
+          <button type="button" class="btn btn-secondary" id="btn-print-certificate">
+            🖨️ Print Certificate
+          </button>
+          <button type="button" class="btn btn-primary" id="btn-download-certificate">
+            📥 Download Certificate (PNG)
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: CREATE CUSTOM QUIZ (CSV + JSON) -->
+  <dialog class="app-dialog" id="dialog-create-quiz" aria-labelledby="dialog-create-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <span class="dialog-icon">✨</span>
+          <h2 id="dialog-create-title">Create Custom Quiz</h2>
+        </div>
+        <button class="dialog-close-btn" id="btn-close-creator-dialog" aria-label="Close dialog">✕</button>
+      </div>
+
+      <form id="create-quiz-form" class="creator-form">
+        <!-- Step 1: Quiz Details -->
+        <div class="form-section">
+          <h3 class="form-section-title">1. Quiz Information</h3>
+          
+          <div class="form-row-grid">
+            <div class="form-group span-2">
+              <label for="cq-title">Quiz Title *</label>
+              <input type="text" id="cq-title" class="form-input" required placeholder="e.g., Python Basics & OOP" maxlength="80">
+            </div>
+
+            <div class="form-group">
+              <label for="cq-category">Category</label>
+              <select id="cq-category" class="form-select">
+                <option value="Technology">Technology</option>
+                <option value="Science">Science</option>
+                <option value="Geography">Geography</option>
+                <option value="History">History</option>
+                <option value="Trivia">Trivia</option>
+                <option value="Custom" selected>Custom</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cq-icon">Icon Emoji</label>
+              <select id="cq-icon" class="form-select">
+                <option value="✨">✨ Sparkle</option>
+                <option value="🚀">🚀 Rocket</option>
+                <option value="🧠">🧠 Brain</option>
+                <option value="💻">💻 Laptop</option>
+                <option value="🔬">🔬 Science</option>
+                <option value="🎨">🎨 Art</option>
+                <option value="📚">📚 Books</option>
+                <option value="🎮">🎮 Gaming</option>
+                <option value="⚽">⚽ Sports</option>
+              </select>
+            </div>
+
+            <div class="form-group span-2">
+              <label for="cq-desc">Description</label>
+              <input type="text" id="cq-desc" class="form-input" placeholder="Brief summary of what this quiz covers..." maxlength="150">
+            </div>
+
+            <div class="form-group">
+              <label for="cq-time">Timer per Question (seconds)</label>
+              <input type="number" id="cq-time" class="form-input" value="20" min="5" max="120">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Questions List -->
+        <div class="form-section">
+          <div class="form-section-header">
+            <h3 class="form-section-title">2. Questions (<span id="cq-questions-count">1</span>)</h3>
+            <div class="creator-quick-actions">
+              <!-- Export JSON -->
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-export-template" title="Download JSON template">
+                📥 JSON Export
+              </button>
+              <!-- Import JSON -->
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-import-json-trigger" title="Import questions from JSON">
+                📤 JSON Import
+              </button>
+              <!-- Export CSV -->
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-export-csv" title="Download CSV template (Excel compatible)">
+                📥 CSV Export
+              </button>
+              <!-- Import CSV -->
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-import-csv-trigger" title="Import questions from CSV file">
+                📤 CSV Import
+              </button>
+              
+              <input type="file" id="json-file-input" accept=".json" hidden>
+              <input type="file" id="csv-file-input" accept=".csv,.txt" hidden>
+            </div>
+          </div>
+
+          <div id="cq-questions-container" class="creator-questions-list">
+            <!-- Question items generated here -->
+          </div>
+
+          <button type="button" class="btn btn-secondary btn-block" id="btn-add-question-item">
+            ➕ Add Another Question
+          </button>
+        </div>
+
+        <div class="dialog-footer">
+          <button type="button" class="btn btn-ghost" id="btn-cancel-creator">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-custom-quiz">
+            🚀 Save & Publish Quiz
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- MODAL: CHANGE PLAYER PROFILE & VIEW STATS -->
+  <dialog class="app-dialog modal-small" id="dialog-player-name" aria-labelledby="dialog-player-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <h3 id="dialog-player-title">Player Profile & Stats</h3>
+        <button class="dialog-close-btn" id="btn-close-player-dialog">✕</button>
+      </div>
+      <form id="player-name-form" class="player-form">
+        <div class="profile-summary-box">
+          <div class="profile-big-avatar" id="modal-profile-avatar">👤</div>
+          <div>
+            <h4 id="modal-profile-name">Player</h4>
+            <div class="font-mono text-muted" id="modal-profile-tier">Level 1 • Rookie Quizzer</div>
+            <div class="font-mono text-gold" id="modal-profile-coins">🪙 250 Coins</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="input-player-name">Change Nickname</label>
+          <input type="text" id="input-player-name" class="form-input" placeholder="Enter your display name" maxlength="25" required>
+        </div>
+        <div class="avatar-picker-row">
+          <label>Choose Avatar:</label>
+          <div class="avatar-choices" id="avatar-choices-grid">
+            <span class="avatar-option selected" data-avatar="👤">👤</span>
+            <span class="avatar-option" data-avatar="🚀">🚀</span>
+            <span class="avatar-option" data-avatar="🧠">🧠</span>
+            <span class="avatar-option" data-avatar="⚡">⚡</span>
+            <span class="avatar-option" data-avatar="🐱">🐱</span>
+            <span class="avatar-option" data-avatar="🦁">🦁</span>
+            <span class="avatar-option" data-avatar="🦉">🦉</span>
+            <span class="avatar-option" data-avatar="👾">👾</span>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button type="submit" class="btn btn-primary btn-block">Save Profile</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
